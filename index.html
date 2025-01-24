@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rutina de Entrenamiento</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+        }
+        .container {
+            width: 90%;
+            max-width: 600px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+            padding: 10px;
+            background: #e9e9e9;
+            border-radius: 4px;
+        }
+        .timer-panel {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #ecf0f1;
+            border-bottom: 1px solid #bdc3c7;
+            text-align: center;
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #time {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .button {
+            margin: 5px;
+            padding: 10px 5%;
+            font-size: 1rem;
+            color: #fff;
+            background: #007BFF;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: calc(80% / 2);
+            max-width: 150px;
+        }
+        .button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .content {
+            margin-top: 250px;
+        }
+        @media (max-width: 768px) {
+            #time {
+                font-size: 2rem;
+            }
+            h1 {
+                font-size: 1.25rem;
+            }
+            .button {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            .content {
+                margin-top: 220px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="timer-panel">
+        <p id="time">00:00</p>
+        <div>
+            <button class="button" onclick="startTimer(60)">60 segundos</button>
+            <button class="button" onclick="startTimer(90)">90 segundos</button>
+            <button class="button" onclick="startTimer(120)">120 segundos</button>
+            <button class="button" onclick="setCustomTime()">Personalizar</button>
+        </div>
+        <button class="button" onclick="stopTimer()">Detener</button>
+    </div>
+    <div class="container content">
+        <h1>Rutina de Entrenamiento</h1>
+        <ul>
+            <li><strong>Día 1: Piernas y Glúteos</strong><br>
+                <p><strong>Calentamiento (5-10 minutos):</strong> Caminadora o elíptica a ritmo moderado.</p>
+                <p><strong>Musculación (4 superseries)</strong></p>
+                <ul>
+                    <li>Sentadilla con mancuernas (12 repeticiones)<br><em>Superset</em><br>Puente de glúteos con peso (15 repeticiones)</li>
+                    <li>Desplantes con mancuernas (10 repeticiones por pierna)<br><em>Superset</em><br>Patada de glúteo en polea o mancuerna (12 repeticiones por pierna)</li>
+                    <li>Elevación de talones para pantorrillas (20 repeticiones)<br><em>Superset</em><br>Peso muerto rumano con mancuernas (12 repeticiones)</li>
+                    <li>Abducciones de cadera en máquina o con banda (15 repeticiones)<br><em>Superset</em><br>Sentadilla búlgara asistida (10 repeticiones por pierna)</li>
+                </ul>
+                <p><strong>Cardio</strong><br>20 minutos de caminadora:<br>Intervalos: 1 minuto rápido + 2 minutos moderados.</p>
+            </li>
+            <li><strong>Día 2: Espalda y Bíceps</strong><br>
+                <p><strong>Calentamiento (5-10 minutos):</strong> Remo ergonómico o caminadora.</p>
+                <p><strong>Musculación (4 superseries)</strong></p>
+                <ul>
+                    <li>Remo con mancuerna a una mano (12 repeticiones por brazo)<br><em>Superset</em><br>Dominadas asistidas o jalón al pecho (12 repeticiones)</li>
+                    <li>Curl de bíceps con mancuernas (15 repeticiones)<br><em>Superset</em><br>Martillo con cuerda o mancuerna (15 repeticiones)</li>
+                    <li>Peso muerto sumo con mancuernas (12 repeticiones)<br><em>Superset</em><br>Remo inclinado con barra (12 repeticiones)</li>
+                    <li>Pullover con mancuerna (15 repeticiones)<br><em>Superset</em><br>Plancha lateral con elevación de brazo (20 segundos por lado)</li>
+                </ul>
+                <p><strong>Cardio</strong><br>20 minutos de bicicleta fija:<br>Intervalos: 30 segundos rápido + 90 segundos lento.</p>
+            </li>
+            <li><strong>Día 3: Descanso Activo o Yoga</strong><br>
+                <p>Realiza actividades ligeras como caminar o practicar yoga.</p>
+            </li>
+            <li><strong>Día 4: Pecho y Tríceps</strong><br>
+                <p><strong>Calentamiento (5-10 minutos):</strong> Elíptica o bicicleta.</p>
+                <p><strong>Musculación (4 superseries)</strong></p>
+                <ul>
+                    <li>Press de pecho con mancuernas (12 repeticiones)<br><em>Superset</em><br>Aperturas con mancuernas en banco (12 repeticiones)</li>
+                    <li>Fondos en paralelas asistidas (10 repeticiones)<br><em>Superset</em><br>Extensiones de tríceps con mancuerna (15 repeticiones)</li>
+                    <li>Press militar con barra o mancuerna (12 repeticiones)<br><em>Superset</em><br>Extensión de tríceps con soga en polea (15 repeticiones)</li>
+                    <li>Plancha frontal con empuje hacia atrás (30 segundos)<br><em>Superset</em><br>Lagartijas asistidas (12 repeticiones)</li>
+                </ul>
+                <p><strong>Cardio</strong><br>20 minutos de caminadora inclinada:<br>Velocidad moderada (subida constante).</p>
+            </li>
+            <li><strong>Día 5: Hombros y Core</strong><br>
+                <p><strong>Calentamiento (5-10 minutos):</strong> Caminadora o remo.</p>
+                <p><strong>Musculación (4 superseries)</strong></p>
+                <ul>
+                    <li>Elevaciones laterales con mancuernas (15 repeticiones)<br><em>Superset</em><br>Press Arnold (12 repeticiones)</li>
+                    <li>Elevaciones frontales alternadas (12 repeticiones)<br><em>Superset</em><br>Remo al mentón con barra (12 repeticiones)</li>
+                    <li>Plancha abdominal con deslizamientos (slide outs) (20 segundos)<br><em>Superset</em><br>Crunch con balón medicinal (15 repeticiones)</li>
+                    <li>Twist ruso con mancuerna (15 repeticiones por lado)<br><em>Superset</em><br>Elevación de piernas colgada o en banco (12 repeticiones)</li>
+                </ul>
+                <p><strong>Cardio</strong><br>20 minutos de elíptica:<br>Esfuerzo constante.</p>
+            </li>
+            <li><strong>Día 6: Full Body y Alta Intensidad</strong><br>
+                <p><strong>Calentamiento (5-10 minutos):</strong> Burpees o cuerda.</p>
+                <p><strong>Musculación (Circuito: 3 vueltas)</strong></p>
+                <ul>
+                    <li>Peso muerto rumano (12 repeticiones)</li>
+                    <li>Sentadilla con salto (10 repeticiones)</li>
+                    <li>Press militar con mancuernas (12 repeticiones)</li>
+                    <li>Remo inclinado con barra (12 repeticiones)</li>
+                    <li>Plancha con toque de hombros (30 segundos)</li>
+                </ul>
+                <p><strong>Cardio</strong><br>20 minutos de intervalos:<br>Cuerda: 30 segundos rápido + 1 minuto lento.</p>
+            </li>
+            <li><strong>Día 7: Descanso Activo o Estiramientos</strong><br>
+                <p>Incluye estiramientos suaves o una caminata relajante.</p>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        let timer;
+
+        function startTimer(duration) {
+            clearInterval(timer);
+            let remaining = duration;
+            const display = document.getElementById('time');
+            const alarmSound = document.getElementById('alarmSound');
+
+            timer = setInterval(() => {
+                const minutes = Math.floor(remaining / 60).toString().padStart(2, '0');
+                const seconds = (remaining % 60).toString().padStart(2, '0');
+                display.textContent = `${minutes}:${seconds}`;
+
+                if (remaining <= 0) {
+                    clearInterval(timer);
+                    alarmSound.play();
+                    alert('¡Tiempo terminado!');
+                }
+                remaining--;
+            }, 1000);
+        }
+
+        function stopTimer() {
+            clearInterval(timer);
+            const display = document.getElementById('time');
+            display.textContent = '00:00';
+        }
+
+        function setCustomTime() {
+            const customTime = prompt("Ingresa el tiempo en segundos:", "60");
+            if (customTime && !isNaN(customTime) && customTime > 0) {
+                startTimer(parseInt(customTime));
+            } else {
+                alert("Por favor, ingresa un número válido.");
+            }
+        }
+    </script>
+</body>
+</html>
