@@ -1,1 +1,1 @@
-# runtena-entrenamiento
+# rutina-entrenamiento
